@@ -904,7 +904,9 @@ body {
 }
 /* Top Service End */
 /* Contact Section start */
-.cta-section { padding: 80px 20px; }
+
+#cta-section { padding: 80px 20px; }
+
 .cta-container {
     max-width: 1320px;
     margin: 0 auto;
