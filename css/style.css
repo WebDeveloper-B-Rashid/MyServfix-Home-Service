@@ -960,7 +960,7 @@ body {
 
 /* Contact Section End */
 /* Customar Section Start */
-.trusted-stats-section {
+#trusted-stats-section {
     padding: 100px 20px;
     background-color: #f8faff; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1076,7 +1076,7 @@ body {
 }
 /* Customar Section End */
 /* My Service Section-2 start */
-.platform-info-section {
+#platform-info-section {
     padding: 80px 20px;
     background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
