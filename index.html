@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyServFix - Home Services</title>
+    <link rel="icon" href="/assetes/imge/logo.png" sizes="16x16 32x32" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+   <!-- Header -->
+<header class="header" id="header">
+	<div class="header-inner">
+		<div class="left-group">
+			<!-- Logo -->
+			<a href="/" class="logo-wrap"> <img src="assetes/imge/logo.png" alt="MyServFix Logo" />  </a>
+			<!-- Desktop nav -->
+			<nav class="nav" aria-label="Main">
+				<a href="/" data-i18n="home">Heim</a> 
+                <a href="#categori" data-i18n="categories">Kategorien</a>
+				<!-- Services with dropdown -->
+				<div class="nav-item-dropdown" id="servicesDropdown">
+					<a href="/service/" class="" id="servicesToggle"> <span data-i18n="services">Dienstleistungen</span>  </a>
+					
+				</div>
+				<a href="#" data-i18n="blogs">Blogs</a> 
+                <a href="#" data-i18n="providers">Anbieter</a>
+			</nav>
+		</div>
+		<!-- Right controls -->
+		<div class="right-group">
+			<!-- Dark/Light -->
+			<button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme"><i class="bi bi-brightness-high" id="themeIcon"></i></button>
+			<!-- Language -->
+			<button class="icon-btn" id="langToggle" aria-label="Toggle language" title="Toggle language"><span id="langCode">En</span></button>
+			<!-- Auth -->
+			<button class="btn-outline" data-bs-toggle="modal" data-bs-target="#loginModal" data-i18n="login">Login</button>
+			<button class="btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="register">Registrieren</button>
+			<!-- Hamburger (small devices) -->
+			<button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><i class="bi bi-list"></i></button>
+		</div>
+	</div>
+</header>
+<!-- Mobile panel -->
+<aside class="mobile-panel" id="mobilePanel" aria-label="Mobile Navigation">
+	<div class="mobile-top">
+		<div class="logo-wrap"><img src="assetes/imge/logo.png" alt="MyServFix Logo" /> </div>
+		<button class="hamburger" id="closeMobile" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+	</div>
+	<div class="mobile-list">
+		<a href="/" data-i18n="home">Heim</a> 
+        <a href="#" data-i18n="categories">Kategorien</a> 
+        <a href="#service" data-i18n="services">Dienstleistungen</a> 
+        <a href="#" data-i18n="blogs">Blogs</a> 
+        <a href="/" data-i18n="providers">Anbieter</a>
+	</div>
+	<div style="height:12px"></div>
+	<div class="mobile-list">
+		<div style="display:flex; gap:10px;">
+			<button class="icon-btn" id="themeToggleMobile" title="Toggle theme"><i class="bi bi-brightness-high"></i></button>
+			<button class="icon-btn" id="langToggleMobile" title="Toggle language"><span id="langCodeMobile">EN</span></button>
+		</div>
+	</div>
+    	<div class="mobile-actions">
+            <div class="auth-buttons">
+                <button class="btn-outline w-50" data-bs-toggle="modal" data-bs-target="#loginModal" data-i18n="login">Login</button>
+		        <button class="btn-primary w-50" data-bs-toggle="modal" data-bs-target="#registerModal" data-i18n="register">Registrieren</button>
+            </div>		
+	</div>
+</aside>
+<!-- Hero -->
+<section class="hero">
+	<div class="hero-left">
+		<h1 class="hero-title"><span data-i18n="simple">Einfach</span>. <span data-i18n="fast">Schnell</span>. <span data-i18n="reliable">Zuverlässig</span>. <span class="accent">MyServFix</span> <span data-i18n="connects">verbindet</span>.</h1>
+		<p class="hero-desc" id="heroDesc">MyServFix hilft Kunden, den passenden Dienstleister zu finden – und Dienstleistern, neue Aufträge zu finden. Registrieren Sie sich kostenlos, erhalten Sie Anfragen und legen Sie sofort los.</p>
+		<!-- Search bar -->
+		<div class="search-bar">
+			<!-- Location (opens popup to Google Maps) -->
+			<div class="input-group location" id="locationInput"><i class="bi bi-geo-alt"></i> <input type="text" placeholder="Your location" id="locationField" readonly aria-label="Your location" /></div>
+            
+			<!-- Service (type and search directly) -->
+			<div class="input-group"><i class="bi bi-search"></i> <input type="text" placeholder="Find a service..." id="serviceField" aria-label="Find a service" /></div>
+			<button class="search-btn" id="seekBtn">Seek</button>
+		</div>
+		<!-- Stats -->
+		<div class="stats">
+			<div class="stat"><span class="num">5,000+</span> <span class="label" data-i18n="stat1">Erfolgreiche Dienstleistungen</span></div>
+			<div class="stat"><span class="num">500+</span> <span class="label" data-i18n="stat2">Rezensionen</span></div>
+			<div class="stat"><span class="num">99.9%</span> <span class="label" data-i18n="stat3">Zufriedene Kunden</span></div>
+		</div>
+	</div>
+	<div class="hero-right">
+		<div class="hero-photo" aria-label="Happy customer and service provider"> <img src="assetes/imge/hero-image.jpg" alt=""></div>
+		<!-- Verified badge -->
+		<div class="verified-badge"><i class="bi bi-patch-check-fill" style="color:var(--accent)"></i> <span data-i18n="verified">Geprüfte Fachkräfte</span> <span class="chip" data-i18n="tested">100% getestet</span></div>
+	</div>
+	<!-- Waves -->
+	<div class="wave-wrap">
+		<div class="wave wave-1">
+			<svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path class="wave-top" d="M0,80 C240,140 480,20 720,80 C960,140 1200,40 1440,100 L1440,140 L0,140 Z"></path></svg>
+		</div>
+		<div class="wave wave-2">
+			<svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path class="wave-bottom" d="M0,100 C240,40 480,140 720,60 C960,-10 1200,120 1440,60 L1440,140 L0,140 Z"></path></svg>
+		</div>
+	</div>
+</section>
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content modal-skin">
+			<div class="modal-header">
+				<h5 class="modal-title" data-i18n="login">Login</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="d-flex flex-column gap-2">
+					<label class="form-label" for="loginEmail" data-i18n="email">E-Mail</label> <input id="loginEmail" type="email" class="form-control" placeholder="you@example.com" />
+					<label class="form-label" for="loginPass" data-i18n="password">Passwort</label> <input id="loginPass" type="password" class="form-control" placeholder="••••••••" />
+					<button type="button" class="btn btn-primary mt-2 btn-skin" data-i18n="login">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content modal-skin">
+			<div class="modal-header">
+				<h5 class="modal-title" data-i18n="register">Registrieren</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="d-flex flex-column gap-2">
+					<label class="form-label" for="regName" data-i18n="fullname">Vollständiger Name</label> <input id="regName" type="text" class="form-control" placeholder="Your name" />
+					<label class="form-label" for="regEmail" data-i18n="email">E-Mail</label> <input id="regEmail" type="email" class="form-control" placeholder="you@example.com" />
+					<label class="form-label" for="regPass" data-i18n="password">Passwort</label> <input id="regPass" type="password" class="form-control" placeholder="••••••••" />
+					<button type="button" class="btn btn-primary mt-2 btn-skin" data-i18n="createaccount">Benutzerkonto erstellen</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Location Modal -->
+<div class="modal fade" id="locationModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content modal-skin">
+			<div class="modal-header">
+				<h5 class="modal-title" data-i18n="yourlocation">Ihr Standort</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<label class="form-label" for="mapAddress" data-i18n="enteraddress">Adresse eingeben</label> <input id="mapAddress" type="text" class="form-control" placeholder="e.g., Mymensingh, Bangladesh" />
+				<button type="button" class="btn btn-primary mt-3 btn-skin" id="openMapsBtn" data-i18n="openmaps">In Google Maps öffnen</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+    <section class="work-process-section">
+        <div class="process-container">
+            <div class="process-header">
+                <h2 class="process-title">So einfach geht's <span class="highlight">MyServFix</span>Werke</h2>
+                <p class="process-subtitle">Finden Sie Ihren perfekten Serviceanbieter in nur drei einfachen Schritten.</p>
+            </div>
+    
+            <div class="cards-wrapper">
+                <div class="connecting-line d-none d-lg-block"></div>
+    
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="step-heading">Wählen Sie den Service aus</h3>
+                    <p class="step-description">Finden Sie das perfekte Angebot direkt in Ihrer Nähe.</p>
+                </div>
+    
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <h3 class="step-heading">Wählen Sie Ihr Wunschdatum.</h3>
+                    <p class="step-description">Wählen Sie Ihr Wunschdatum.</p>
+                </div>
+    
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="icon-box">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <h3 class="step-heading">Buchungsanfrage senden</h3>
+                    <p class="step-description">Vergleichen Sie Profile und Preise und senden Sie eine Buchungsanfrage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Service Section End -->
+
+    <!-- Catagori Section Start -->
+    <section id="categori" class="top-categories">
+        <div class="cat-container">
+            <div class="cat-top-bar">
+                <div class="cat-title-area">
+                    <h2>Unser <span class="purple-text">Top-Kategorien</span></h2>
+                    <p>Entdecken Sie ein breites Spektrum an professionellen Dienstleistungen.</p>
+                </div>
+                <a href="#" class="view-all-btn">Alle anzeigen</a>
+            </div>
+    
+            <div class="cat-list-wrapper">
+                <div class="cat-row">
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-scissors"></i></div>
+                        <div class="cat-info">
+                            <h4>Barbier</h4>
+                            <p>Schnitt, Farbe und Styling von Experten</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <div class="cat-info">
+                            <h4>Koch / Küchenchef</h4>
+                            <p>Kulinarische Erlebnisse für jeden Anlass</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-paint-roller"></i></div>
+                        <div class="cat-info">
+                            <h4>Maler und Lackierer</h4>
+                            <p>Professionelle Innen- und Außenarbeiten</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-wrench"></i></div>
+                        <div class="cat-info">
+                            <h4>Klempner / Installateur</h4>
+                            <p>Wasser, Heizung und Sanitär</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cat-row">
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="cat-info">
+                            <h4>Sicherheit</h4>
+                            <p>Zuverlässiger Sicherheitsdienst</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-landmark"></i></div>
+                        <div class="cat-info">
+                            <h4>Reinigung</h4>
+                            <p>Gründliche Reinigungsdienste</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-hammer"></i></div>
+                        <div class="cat-info">
+                            <h4>Heimwerker</h4>
+                            <p>Allgemeine Reparaturen und Installationen</p>
+                        </div>
+                    </div>
+                    <div class="cat-card">
+                        <div class="cat-icon"><i class="fa-solid fa-truck"></i></div>
+                        <div class="cat-info">
+                            <h4>Umzug & Transport</h4>
+                            <p>Professionelle Umzugshilfe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Catagori Section End -->    
+    <!-- Top Service Start -->
+    <section id="service" class="rated-services-section">
+        <div class="services-container">
+            <div class="services-header">
+                <h2>Höchstbewertet <span class="accent-color">Dienstleistungen</span></h2>
+                <p>Entdecken Sie unsere beliebtesten und am besten bewerteten Services.</p>
+            </div>
+    
+            <div class="services-flex-wrapper">
+                
+                <div class="service-card">
+                    <div class="card-image-box">
+                        <img src="assetes/imge/services3.jpg" alt="Sewer Line Cleaning">
+                        <span class="rating-badge"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="service-name">Abwasserrohrreinigung</h3>
+                        <p class="provider-name">Felix Harris</p>
+                        <div class="card-footer">
+                            <span class="price">€ 27.00</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i>25 Minuten</span>
+                        </div>
+                        <div class="rating"> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                        </div>
+                        <button class="book-btn">Jetzt buchen</button>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="card-image-box">
+                        <img src="assetes/imge/services4.jpg" alt="Fault Diagnosis">
+                        <!-- <img src="assetes/imge/services5.jpg" alt="Fault Diagnosis"> -->
+                        <span class="rating-badge"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="service-name">Fehlerdiagnose</h3>
+                        <p class="provider-name">Daniel Williams</p>
+                        <div class="card-footer">
+                            <span class="price">€ 25.00</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 20 Minuten</span>
+                        </div>
+                        <div class="rating"> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                        </div>
+                        <button class="book-btn">Jetzt buchen</button>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="card-image-box">
+                        <img src="assetes/imge/services1.jpg" alt="Custom Frame Painting">
+                        <span class="rating-badge"><i class="fa-solid fa-star"></i> 5</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="service-name">Individuelle Rahmenlackierung</h3>
+                        <p class="provider-name">Katie Brown</p>
+                        <div class="card-footer">
+                            <span class="price">€ 12.00</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 10 Minuten</span>
+                        </div>
+                        <div class="rating"> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                        </div>
+                        <button class="book-btn">Jetzt buchen</button>
+                    </div>
+                </div>
+    
+                <div class="service-card">
+                    <div class="card-image-box">
+                        <img src="assetes/imge/services2.jpg" alt="Kitchen Deep Cleaning">
+                        <span class="rating-badge"><i class="fa-solid fa-star"></i> 4.7</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="service-name">Gründliche Küchenreinigung</h3>
+                        <p class="provider-name">Felix Harris</p>
+                        <div class="card-footer">
+                            <span class="price">€ 38.00</span>
+                            <span class="duration"><i class="fa-regular fa-clock"></i> 35 Minuten</span>
+                        </div>
+                        <div class="rating"> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                            <i class="fa-solid fa-star"></i> 
+                        </div>
+                        <button class="book-btn">Jetzt buchen</button>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    <!-- Top Service End -->
+
+    <!-- Contact Section start --> 
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-info">
+                <h2>Steigern Sie Ihren Umsatz und Ihr Fachwissen</h2>
+                <p>Ein engagierter Anbieter mit herausragendem Service. Bewährte Expertise für erstklassige Ergebnisse und höchste Kundenzufriedenheit. Lassen Sie uns Ihr Projekt gemeinsam zum Erfolg führen.</p>
+                <div class="cta-btns">
+                    <button class="reg-now">Jetzt registrieren <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="reg-now">Mehr erfahren<i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="empty-box"></div>
+                </div>
+            </div>
+            <div class="contact-card">
+                <h4>Kontaktieren Sie uns</h4>
+                <div class="contact-item">
+                    <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div><small>E-mail</small><br><strong>info@myservfix.com</strong></div>
+                </div>
+                <div class="contact-item">
+                    <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div><small>Telefon</small><br><strong>+49 (0) 211-387 86 224</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+    <!-- Customar Section Start -->
+    <section class="trusted-stats-section">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2 class="stats-main-title">Unser <span class="purple-text">vertrauenswürdig</span>Kunden</h2>
+                <p class="stats-sub-text">
+                    Perfektion in der Praxis: 99,9 % zufriedene Kunden, über 500 Bewertungen und 5.068 erfolgreich erbrachte Dienstleistungen.
+                </p>
+            </div>
+    
+            <div class="stats-cards-wrapper">
+                <div class="stat-card">
+                    <div class="stat-icon-box">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="stat-number">5,068+</h3>
+                    <p class="stat-label">Erfolgreiche Dienstleistungen</p>
+                </div>
+    
+                <div class="stat-card">
+                    <div class="stat-icon-box">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h3 class="stat-number">500+</h3>
+                    <p class="stat-label">Kundenrezensionen</p>
+                </div>
+    
+                <div class="stat-card">
+                    <div class="stat-icon-box">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="stat-number">99.9%</h3>
+                    <p class="stat-label">Zufriedene Kunden</p>
+                </div>
+    
+                <div class="stat-card">
+                    <div class="stat-icon-box">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="stat-number">100+</h3>
+                    <p class="stat-label">Verifizierte Anbieter</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Customar Section End -->
+    <!-- My Service Section-2 start -->
+    <section class="platform-info-section">
+        <div class="platform-container">
+            <div class="platform-image-wrapper">
+                <img src="assetes/imge/app-my service.jpg" alt="Woman using phone" class="responsive-hero-img">
+            </div>
+    
+            <div class="platform-content-wrapper">
+                <h2 class="platform-title">
+                    MyServFix – Ihre Plattform für<span class="purple-highlight">Dienstleister und Handwerker</span>
+                </h2>
+                <p class="platform-description">
+                    Wir bringen Kunden mit den besten Dienstleistern in ihrer Region zusammen. Einfach, schnell und zuverlässig.
+                </p>
+    
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon-box">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Mediation statt Verpflichtung</h4>
+                            <p>Wir bringen Sie mit qualifizierten Dienstleistern in Kontakt – ohne versteckte Kosten.</p>
+                        </div>
+                    </div>
+    
+                    <div class="feature-item">
+                        <div class="feature-icon-box">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Bewertungen, Preise und Verfügbarkeit</h4>
+                            <p>Alle wichtigen Informationen auf einen Blick, damit Sie Ihre Entscheidung treffen können.</p>
+                        </div>
+                    </div>
+    
+                    <div class="feature-item">
+                        <div class="feature-icon-box">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Flexibel, sicher, transparent</h4>
+                            <p>Volle Kontrolle über Ihre Buchungen dank transparenter Prozesse.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- My Service Section-2 End -->
+     <!-- Our App download Section Start -->
+    <section class="app-download-section">
+        <div class="app-container">
+            <div class="app-content-area">
+                <h2 class="app-main-title">Verbessern Sie Ihr Erlebnis mit unserer App</h2>
+                <p class="app-sub-text">
+                    Entdecken Sie die vielfältigen Dienstleistungen von MyServFix und bleiben Sie über die neuesten Angebote und Aktionen informiert, indem Sie unsere App herunterladen!
+                </p>
+                
+                <div class="store-buttons-flex">
+                    <a href="#" class="store-btn">
+                        <img src="assetes/imge/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                    </a>
+                    <a href="#" class="store-btn">
+                        <img src="assetes/imge/download-on-the-app-store.svg" alt="App Store">
+                    </a>
+                </div>
+            </div>
+    
+            <div class="app-image-area">
+                <div class="phone-img-wrapper">
+                    <img src="assetes/imge/phone.png" alt="MyServFix App Mockup" class="app-mockup-img">
+                </div>
+            </div>
+        </div>
+    </section> 
+    <!-- Our App download Section End -->
+
+    <!-- Workflow Sections Start -->
+    <section class="workflow-optimization-section">
+        <div class="workflow-container">
+            <div class="workflow-header">
+                <h2 class="workflow-title">
+                    Ausgefeilte Lösungen und optimierte <span class="purple-text">professioneller Workflow</span>
+                </h2>
+                <p class="workflow-subtitle">
+                    Optimierter Workflow: Planen, ausführen, zusammenarbeiten, anpassen. Nutzen Sie Automatisierung, Kommunikation und Flexibilität für maximale Produktivität.
+                </p>
+            </div>
+    
+            <div class="workflow-steps-flex">
+                <div class="workflow-line-bg"></div>
+    
+                <div class="workflow-step-item">
+                    <div class="workflow-icon-wrapper">
+                        <span class="step-counter">1</span>
+                        <div class="workflow-icon-circle">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                    </div>
+                    <div class="workflow-text-content">
+                        <h3>Administrator an Anbieter</h3>
+                        <p>Der Administrator ermöglicht den Nutzern Buchungen und koordiniert die Zusammenarbeit mit den Anbietern, um eine erfolgreiche Leistungserbringung zu gewährleisten.</p>
+                    </div>
+                </div>
+    
+                <div class="workflow-step-item">
+                    <div class="workflow-icon-wrapper">
+                        <span class="step-counter">2</span>
+                        <div class="workflow-icon-circle">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="workflow-text-content">
+                        <h3>Anbieter an MyServfix</h3>
+                        <p>Der Anbieter organisiert die Terminbuchungen der Nutzer und kommuniziert anschließend mit dem Handwerker, um eine erfolgreiche Leistungserbringung zu gewährleisten.</p>
+                    </div>
+                </div>
+    
+                <div class="workflow-step-item">
+                    <div class="workflow-icon-wrapper">
+                        <span class="step-counter">3</span>
+                        <div class="workflow-icon-circle">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                    </div>
+                    <div class="workflow-text-content">
+                        <h3>MyServfix an Benutzer</h3>
+                        <p>MyServFix verbindet Nutzer mit qualifizierten Anbietern und sorgt für ein reibungsloses Serviceerlebnis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Workflow Sections End -->
+
+    <!-- Footer Sections Start -->
+    <footer class="myservfix-footer-section">
+        <div class="footer-top-container">
+            <div class="footer-col brand-info">
+                <div class="footer-logo">
+                    <img style="max-width:80px ;" src="assetes/imge/logo.png" alt="MyServFix Logo">
+                </div>
+                <p class="brand-desc">
+                    MyServFix hilft Kunden, den richtigen Serviceanbieter zu finden – und Serviceanbietern, neue Aufträge zu erhalten.
+                </p>
+                <div class="social-links-flex">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+    
+            <div class="footer-col">
+                <h4 class="footer-heading">Schnellzugriff</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Startseite</a></li>
+                    <li><a href="#">So funktioniert es</a></li>
+                    <li><a href="#">Kategorien</a></li>
+                    <li><a href="#">Dienstleistungen</a></li>
+                    <li><a href="#">Über uns</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-col">
+                <h4 class="footer-heading">Dienstleistungen</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#">Barbier</a></li>
+                    <li><a href="#">Maler und Dekorateure</a></li>
+                    <li><a href="#">Klempner</a></li>
+                    <li><a href="#">Sicherheit</a></li>
+                    <li><a href="#">Reinigung</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-col contact-info">
+                <h4 class="footer-heading">Kontakt</h4>
+                <div class="contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+49 (0) 211-387 86 224</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@myservfix.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Düsseldorf, Deutschland</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-bottom-bar">
+            <div class="bottom-container">
+                <p class="copyright-text">© 2026 MyServFix. Alle Rechte vorbehalten.</p>
+                <div class="legal-links">
+                    <a href="#">Datenschutz</a>
+                    <a href="#">Impressum</a>
+                    <a href="#">Geschäftsbedingungen</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Sections End -->
+
+    <!-- To Up Button --> 
+    <button id="toUpBtn" title="Go to top">
+         <i class="fas fa-arrow-up"></i>
+ </button>
+   
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
